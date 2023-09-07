@@ -23,7 +23,9 @@ services:
       timeout: 5s
       retries: 10
 
+
   n8n:
+    container_name: n8n
     image: docker.n8n.io/n8nio/n8n:latest
     restart: always
     environment:
@@ -39,6 +41,8 @@ services:
       - NODE_ENV=production
       - WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
       - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
+      - N8N_HIDE_USAGE_PAGE=false
+      # - N8N_USER_FOLDER=n8n_user
     ports:
       - 5678:5678
     links:
